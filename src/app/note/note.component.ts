@@ -13,14 +13,13 @@ export class NoteComponent {
   @Input() note!: Note;
 
   constructor(private service:DateService){
+    console.log(this.note);
+    this.service.setDate(this.note.date);
   }
 
   dateFormat():string{
-    // let date:number= this.note.date.getDate();
-    // let suffix:string= suffixes.get(date) ? suffixes.get(date)! : "th";
-
-    // return `${this.note.date.getDay()} the ${date}${suffix}, 
-    // ${this.note.date.getFullYear()}`;
-    return '';
+    return `${this.service.formatDayOfWeek()} the ${this.service.formatDate()}
+    of ${this.service.formatMonth()},${this.note.date.getFullYear()}.\n
+    ${this.service.formatTime()}`;
   }
 }

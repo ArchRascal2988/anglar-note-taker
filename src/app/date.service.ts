@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class DateService {
+  date:Date= new Date();
+
   dateSuffixes:Map<number, string>= new Map([
     [1, "st"],
     [2, "nd"],
@@ -19,6 +21,21 @@ export class DateService {
     [5, "Friday"],
     [6, "Saturday"]
   ]);
+
+  months:Map<number, string>= new Map([
+    [0, "January"],
+    [1, "February"],
+    [2, "March"],
+    [3, "April"],
+    [4, "May"],
+    [5, "June"],
+    [6, "July"],
+    [7, "August"],
+    [8, "September"],
+    [9, "October"],
+    [10, "November"],
+    [11, "December"]
+  ])
 
   hours:Map<number, number>= new Map([
     [0, 12],
@@ -47,5 +64,34 @@ export class DateService {
     [23, 11]
   ])
 
+  setDate(newDate:Date):void{
+    this.date= newDate;
+  }
 
+  formatDayOfWeek():string{
+    let name= this.days.get(this.date.getDay());
+    return  name ? name : "";
+  }
+
+  formatDate():string{
+    let date:number= this.date.getDate();
+    let suffix:string = "th";
+    if(date < 3){
+      suffix= this.dateSuffixes.get(date)!;
+    }
+
+    return `${date}${suffix}`;
+  }
+
+  formatTime():string{
+    let hour= this.hours.get(this.date.getHours());
+    let suffix:string= this.date.getHours() >= 12 ? "pm" : "am";
+
+    return  hour ? `${hour}:${this.date.getSeconds()}${suffix}` : "unknown time";
+  }
+
+  formatMonth():string{
+    let month= this.months.get(this.date.getMonth());
+    return month ? month : "";
+  }
 }
