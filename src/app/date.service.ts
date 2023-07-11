@@ -87,7 +87,7 @@ export class DateService {
     let hour= this.hours.get(this.date.getHours());
     let suffix:string= this.date.getHours() >= 12 ? "pm" : "am";
 
-    return  hour ? `${hour}:${this.date.getSeconds()}${suffix}` : "unknown time";
+    return  hour ? `${hour}:${this.date.getMinutes()}${suffix}` : "unknown time";
   }
 
   formatMonth():string{

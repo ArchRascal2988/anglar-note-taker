@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DateService } from '../date.service';
 import { Note } from '../interfaces';
 
@@ -9,17 +9,20 @@ import { Note } from '../interfaces';
   providers: [DateService]
 })
 
-export class NoteComponent {
+export class NoteComponent implements OnInit{
   @Input() note!: Note;
 
   constructor(private service:DateService){
-    console.log(this.note);
+    
+  }
+
+  ngOnInit(): void {
     this.service.setDate(this.note.date);
   }
 
   dateFormat():string{
     return `${this.service.formatDayOfWeek()} the ${this.service.formatDate()}
-    of ${this.service.formatMonth()},${this.note.date.getFullYear()}.\n
+    of ${this.service.formatMonth()}, ${this.note.date.getFullYear()}.\n
     ${this.service.formatTime()}`;
   }
 }

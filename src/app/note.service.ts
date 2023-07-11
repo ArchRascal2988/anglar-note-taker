@@ -3,7 +3,7 @@ import { LoggerService } from './logger.service';
 import { Note } from './interfaces';
 
 const noteRawData= require('../notes.json');
-
+console.log(noteRawData);
 
 
 @Injectable({
@@ -18,9 +18,10 @@ export class NoteService {
   }
 
   getNoteData():Array<Note>{
-    console.log(noteRawData)
     this.logger.log(`Raw data read: ${noteRawData.notes}`);
     for(const note of noteRawData.notes){
+      note.date= new Date(note.date);
+
       this.noteData.push(note);
     }
     this.logger.log(`Data added: ${this.noteData}`)
