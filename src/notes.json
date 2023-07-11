@@ -1,0 +1,14 @@
+{
+    "notes": [
+        {
+            "title": "Test1",
+            "body": "testbody1",
+            "date": "07/11/23 12:45"
+        },
+        {
+            "title": "Test2",
+            "body": "testbody2",
+            "date": "10/01/22 14:45"
+        }
+    ]
+}
